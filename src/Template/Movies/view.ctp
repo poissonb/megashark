@@ -31,6 +31,10 @@
             <td><?= $this->Number->format($movie->duration) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Release Year') ?></th>
+            <td><?= $this->Number->format($movie->releaseyear) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($movie->created) ?></td>
         </tr>

@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $description
  * @property int $duration
+ * @property int $releaseyear
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -31,6 +32,7 @@ class Movie extends Entity
         'name' => true,
         'description' => true,
         'duration' => true,
+        'releaseyear' => true,
         'created' => true,
         'modified' => true,
         'showtimes' => true
