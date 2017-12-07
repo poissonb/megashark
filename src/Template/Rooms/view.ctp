@@ -24,7 +24,9 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($room->id) ?></td>
+            <td>                
+                $rooms = $this->Showtimes->Rooms->find('id')
+                $this -> set('rooms',$rooms); </td>
         </tr>
         <tr>
             <th scope="row"><?= __('Capacity') ?></th>
@@ -52,6 +54,8 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
+
+                
             </tr>
             <?php foreach ($room->showtimes as $showtimes): ?>
             <tr>
