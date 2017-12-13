@@ -41,8 +41,8 @@ class RoomsController extends AppController
             ->find()
             ->contain(['Movies','Rooms'])
             ->where(['room_id' => $id])
-            ->where(['room_id' => $id])
-            ->where(['room_id' => $id]);
+            ->where(['start >=' => new \DateTime('Monday this week')])
+            ->where(['start <=' => new \DateTime('Sunday this week')]);
             
         $this->set('Showtimes', $Showtimes);
         $this->set('room', $room);
