@@ -44,6 +44,14 @@ class RoomsController extends AppController
             ->where(['start >=' => new \DateTime('Monday this week')])
             ->where(['start <=' => new \DateTime('Sunday this week')]);
             
+        $showtimesThisWeek = [];
+        
+        foreach($Showtimes as $show){
+             $showtimesThisWeek[($show->start)->format('N')][] = $show;    
+        }
+            
+        
+        $this->set('showtimesThisWeek', $showtimesThisWeek);
         $this->set('Showtimes', $Showtimes);
         $this->set('room', $room);
         $this->set('_serialize', ['room']);
@@ -113,5 +121,29 @@ class RoomsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    
+    public function planning($id = null)
+    {
+        $room = $this->Rooms->get($id);
+        
+        $Showtimes = $this->Rooms->Showtimes
+            ->find()
+            ->contain(['Movies','Rooms'])
+            ->where(['room_id' => $id])
+            ->where(['start >=' => new \DateTime('Monday this week')])
+            ->where(['start <=' => new \DateTime('Sunday this week')]);
+            
+        $showtimesThisWeek = [];
+        
+        foreach($Showtimes as $show){
+             $showtimesThisWeek[($show->start)->format('N')][] = $show;    
+        }
+            
+        
+        $this->set('showtimesThisWeek', $showtimesThisWeek);
+        $this->set('Showtimes', $Showtimes);
+        $this->set('room', $room);
+        $this->set('_serialize', ['room']);
     }
 }

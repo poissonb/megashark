@@ -47,17 +47,13 @@
     <th>Start at</th>
     <th>End at</th>
    
-   <?php foreach ($Showtimes as $Showtime): ?>
+   <?php foreach (showtimes as $Showtime): ?>
             <tr>
-                
                 <td><?=$Showtime->movie->name ?></td>
                 <td><?= h($Showtime->start->format('H:i')) ?></td>
                 <td><?= h($Showtime->end->format('H:i')) ?></td>
             </tr>
     <?php endforeach; ?>
-    <?php 
-    print_r(showtimesThisWeek);
-    ?>
     </table>
    
 </div>
