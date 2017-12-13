@@ -41,39 +41,19 @@
             <td><?= h($room->modified) ?></td>
         </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Related Showtimes') ?></h4>
-        <?php if (!empty($room->showtimes)): ?>
-        <table cellpadding="0" cellspacing="0">
+    
+    <table>
+    <th>Name of the movies</th>
+    <th>Start at</th>
+    <th>End at</th>
+   
+   <?php foreach ($Showtimes as $Showtime): ?>
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Movie Id') ?></th>
-                <th scope="col"><?= __('Room Id') ?></th>
-                <th scope="col"><?= __('Start') ?></th>
-                <th scope="col"><?= __('End') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-
-                
+                <td><?=$Showtime->movie->name ?></td>
+                <td><?= h($Showtime->start->format('H:i')) ?></td>
+                <td><?= h($Showtime->end->format('H:i')) ?></td>
             </tr>
-            <?php foreach ($room->showtimes as $showtimes): ?>
-            <tr>
-                <td><?= h($showtimes->id) ?></td>
-                <td><?= h($showtimes->movie_id) ?></td>
-                <td><?= h($showtimes->room_id) ?></td>
-                <td><?= h($showtimes->start) ?></td>
-                <td><?= h($showtimes->end) ?></td>
-                <td><?= h($showtimes->created) ?></td>
-                <td><?= h($showtimes->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Showtimes', 'action' => 'view', $showtimes->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Showtimes', 'action' => 'edit', $showtimes->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Showtimes', 'action' => 'delete', $showtimes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $showtimes->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
+    <?php endforeach; ?>
+    </table>
+   
 </div>
