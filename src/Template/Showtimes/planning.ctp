@@ -1,7 +1,16 @@
 <div class="showtimes index content">
 
+<!-- Form to select rooms -->
+<?php 
+    echo $this->Form->create();
+    echo $this->Form->control('room_id', ['options' => $room]);
+    echo $this->Form->button(__('Click to see the showtimes of this room'));
+    echo $this->Form->end(); 
+    ?>
+    
 
 <table>
+<!-- Generating a name day for each columns -->
 <thead>
         <tr>
             <th scope="col">Monday</th>

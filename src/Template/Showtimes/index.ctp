@@ -8,6 +8,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Showtime'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Planning'), ['action' => 'planning']) ?></li>
     </ul>
 </nav>
 <div class="showtimes index large-9 medium-8 columns content">

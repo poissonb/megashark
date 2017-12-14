@@ -113,24 +113,33 @@ class ShowtimesController extends AppController
     
     public function planning($id = null)
     {
-        
+        //Retrieve rooms data
         $room = $this->Showtimes->Rooms->find('list');
-        $id = (array_keys($room->toArray()))[0];
         
+        //Request retrieving showtimes from all rooms
         $Showtimes = $this->Showtimes
             ->find()
             ->contain(['Movies','Rooms'])
-         //   ->where(['room_id' => $id])
+            
             ->where(['start >=' => new \DateTime('Monday this week')])
             ->where(['start <=' => new \DateTime('Sunday this week')]);
             
+        //If user select a rooms, it's show only the rooms showtimes    
+        if ($this->request->is('post')) {
+            $Showtimes = $Showtimes
+            ->where(['room_id' => $this->request->getData('room_id')]);
+        }
+            
+        //Array for recovering movies data day per day
         $showtimesThisWeek = [];
         
         foreach($Showtimes as $show){
              $showtimesThisWeek[($show->start)->format('N')][] = $show;    
         }
             
-        
+            
+            
+        //Send data to Showtimess      
         $this->set('showtimesThisWeek', $showtimesThisWeek);
         $this->set('Showtimes', $Showtimes);
         $this->set('room', $room);
