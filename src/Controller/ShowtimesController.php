@@ -122,7 +122,7 @@ class ShowtimesController extends AppController
             ->contain(['Movies','Rooms'])
             
             ->where(['start >=' => new \DateTime('Monday this week')])
-            ->where(['start <=' => new \DateTime('Sunday this week')]);
+            ->where(['start <=' => new \DateTime('Monday next week')]);
             
         //If user select a rooms, it's show only the rooms showtimes    
         if ($this->request->is('post')) {
